@@ -1,0 +1,48 @@
+<form class = "box" [formGroup] = "form" (submit) = "onSubmit ()">
+    <div class = "field">
+        <label class = "label">Username</label>
+        <div class = "control">
+            <!-- Directive or something to reduce duplication? -->
+            <input
+                class = "input"
+                type = "text"
+                required
+                formControlName = "username"
+                [ngClass] = "{ 'is-danger': username && isControlInvalid (username) }"
+                >
+        </div>
+        <ng-container *ngIf = "username && isControlInvalid (username)">
+            <p *ngIf = "username.hasError ('required')" class = "help is-danger">Username is required.</p>
+        </ng-container>
+    </div>
+
+    <div class = "field">
+        <label class = "label">Password</label>
+        <div class = "control">
+            <input
+                class = "input"
+                type = "password"
+                required
+                formControlName = "password"
+                [ngClass] = "{ 'is-danger': password && isControlInvalid (password) }"
+                >
+        </div>
+        <ng-container *ngIf = "password && isControlInvalid (password)">
+            <p *ngIf = "password.hasError ('required')" class = "help is-danger">Password is required.</p>
+        </ng-container>
+        <p class = "help">Forgot your password? <a routerLink = "/users/reset">Reset password</a></p>
+    </div>
+
+    <div class = "field is-grouped">
+        <div class = "control">
+            <button
+                class = "button is-primary"
+                type = "submit"
+                >
+                Log in
+            </button>
+        </div>
+
+        <p class = "help">No account? <a routerLink = "/users/signup">Create one</a></p>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+@import "variables";
+svg {
+    position: absolute;
+    top: 50px;
+    z-index: -1;
+
+    fill: $primary;
+
+    width: 100%;
+    height: 5vh;
+}

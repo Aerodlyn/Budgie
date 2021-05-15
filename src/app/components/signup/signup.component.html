@@ -1,0 +1,67 @@
+<form class = "box" [formGroup] = "form" (submit) = "onSubmit ()">
+    <div class = "field">
+        <label class = "label">Username</label>
+        <div class = "control">
+            <!-- Directive or something to reduce duplication? -->
+            <input
+                class = "input"
+                type = "text"
+                required
+                formControlName = "username"
+                [ngClass] = "{ 'is-danger': username && isControlInvalid (username) }"
+                >
+        </div>
+        <ng-container *ngIf = "username && isControlInvalid (username)">
+            <p *ngIf = "username.hasError ('required')" class = "help is-danger">Username is required.</p>
+        </ng-container>
+    </div>
+
+    <div class = "field">
+        <label class = "label">Password</label>
+        <div class = "control">
+            <input
+                class = "input"
+                type = "password"
+                required
+                minlength = "8"
+                formControlName = "password"
+                [ngClass] = "{ 'is-danger': password && isControlInvalid (password) }"
+                >
+        </div>
+        <p class = "help">Must contain at least 8 character</p>
+        <ng-container *ngIf = "password && isControlInvalid (password)">
+            <p *ngIf = "password.hasError ('required')" class = "help is-danger">Password is required.</p>
+        </ng-container>
+    </div>
+
+    <div class = "field">
+        <label class = "label">Password confirmation</label>
+        <div class = "control">
+            <input
+                class = "input"
+                type = "password"
+                required
+                minlength = "8"
+                formControlName = "passwordConfirmation"
+                [ngClass] = "{ 'is-danger': passwordConfirmation && isControlInvalid (passwordConfirmation) }"
+                >
+        </div>
+        <p class = "help">Enter the same password as before, for verification.</p>
+        <ng-container *ngIf = "passwordConfirmation && isControlInvalid (passwordConfirmation)">
+            <p *ngIf = "passwordConfirmation.hasError ('required')" class = "help is-danger">Password confirmation is required.</p>
+        </ng-container>
+    </div>
+
+    <div class = "field is-grouped">
+        <div class = "control">
+            <button
+                class = "button is-primary"
+                type = "submit"
+                >
+                Sign up
+            </button>
+        </div>
+
+        <p class = "help">Already have an account? <a routerLink = "/users/login">Log in</a></p>
+    </div>
+</form>
