@@ -1,9 +1,13 @@
 <budgie-navbar></budgie-navbar>
 
-<section class = "section is-flex-grow-1">
+<section *ngIf = "!isOnSelfHandledLayoutPage (); else elseBlock" class = "section is-flex-grow-1">
     <div class = "container is-max-desktop">
         <router-outlet></router-outlet>
     </div>
 </section>
+
+<ng-template #elseBlock>
+    <router-outlet></router-outlet>
+</ng-template>
 
 <budgie-footer></budgie-footer>

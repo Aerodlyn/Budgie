@@ -28,7 +28,7 @@
                 [ngClass] = "{ 'is-danger': password && isControlInvalid (password) }"
                 >
         </div>
-        <p class = "help">Must contain at least 8 character</p>
+        <p class = "help" [ngClass] = "{ 'is-danger': password?.hasError ('minlength') }">Must contain at least 8 character</p>
         <ng-container *ngIf = "password && isControlInvalid (password)">
             <p *ngIf = "password.hasError ('required')" class = "help is-danger">Password is required.</p>
         </ng-container>
@@ -41,12 +41,11 @@
                 class = "input"
                 type = "password"
                 required
-                minlength = "8"
                 formControlName = "passwordConfirmation"
-                [ngClass] = "{ 'is-danger': passwordConfirmation && isControlInvalid (passwordConfirmation) }"
+                [ngClass] = "{ 'is-danger': (passwordConfirmation && isControlInvalid (passwordConfirmation)) || (isControlInvalid (form) && form.hasError ('mismatch')) }"
                 >
         </div>
-        <p class = "help">Enter the same password as before, for verification.</p>
+        <p class = "help" [ngClass] = "{ 'is-danger': isControlInvalid (form) && form.hasError ('mismatch') } ">Enter the same password as before, for verification.</p>
         <ng-container *ngIf = "passwordConfirmation && isControlInvalid (passwordConfirmation)">
             <p *ngIf = "passwordConfirmation.hasError ('required')" class = "help is-danger">Password confirmation is required.</p>
         </ng-container>

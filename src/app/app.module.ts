@@ -11,7 +11,8 @@ import {
     LoginComponent,
     NavbarComponent,
     RootComponent,
-    SignupComponent
+    SignupComponent,
+    WelcomeComponent
 } from "./components";
 
 @NgModule ({
@@ -20,7 +21,8 @@ import {
         LoginComponent,
         NavbarComponent,
         RootComponent,
-        SignupComponent
+        SignupComponent,
+        WelcomeComponent
     ],
     imports: [
         AppRoutingModule,
